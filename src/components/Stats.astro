@@ -3,28 +3,33 @@ interface StatItem {
   title: string;
   subtitle: string;
   value: string;
+  gradient: string; // Añadimos esta propiedad para los diferentes gradientes
 }
 
 const stats: StatItem[] = [
   {
     title: 'Study Streak',
     subtitle: 'Days in a row',
-    value: '7 days'
+    value: '7 days',
+    gradient: 'from-red-400 via-red-300 to-red-400'
   },
   {
     title: 'Retention Rate',
     subtitle: 'Words you remember',
-    value: '85%'
+    value: '85%',
+    gradient: 'from-blue-400 via-blue-300 to-blue-400'
   },
   {
     title: 'Mastered Words',
     subtitle: 'Total words learned',
-    value: '156 words'
+    value: '156 words',
+    gradient: 'from-green-400 via-green-300 to-green-400'
   },
   {
     title: 'Due Today',
     subtitle: 'Words to review',
-    value: '25 cards'
+    value: '25 cards',
+    gradient: 'from-purple-400 via-purple-300 to-purple-400'
   }
 ];
 ---
@@ -37,7 +42,7 @@ const stats: StatItem[] = [
           <div class="flex flex-col items-center justify-center px-6 py-6 bg-white/10 text-center">
             <dt class="text-sm font-bold text-white/90">{stat.title}</dt>
             <dd class="text-xs text-white/70 mt-1">{stat.subtitle}</dd>
-            <dd class="text-2xl font-semibold mt-2 bg-gradient-to-r from-amber-400 via-yellow-300 to-amber-400 text-transparent bg-clip-text">
+            <dd class={`text-2xl font-semibold mt-2 bg-gradient-to-r ${stat.gradient} text-transparent bg-clip-text`}>
               {stat.value}
             </dd>
           </div>
