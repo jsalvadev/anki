@@ -1,0 +1,48 @@
+---
+interface StatItem {
+  title: string;
+  subtitle: string;
+  value: string;
+}
+
+const stats: StatItem[] = [
+  {
+    title: 'Study Streak',
+    subtitle: 'Days in a row',
+    value: '7 days'
+  },
+  {
+    title: 'Retention Rate',
+    subtitle: 'Words you remember',
+    value: '85%'
+  },
+  {
+    title: 'Mastered Words',
+    subtitle: 'Total words learned',
+    value: '156 words'
+  },
+  {
+    title: 'Due Today',
+    subtitle: 'Words to review',
+    value: '25 cards'
+  }
+];
+---
+
+<div class="relative pt-4">
+  <div class="mx-auto backdrop-blur-sm rounded-xl border border-white/20 shadow-2xl">
+    <dl class="grid grid-cols-1 divide-y divide-white/20 sm:grid-cols-4 sm:divide-y-0 sm:divide-x">
+      {
+        stats.map(stat => (
+          <div class="flex flex-col items-center justify-center px-6 py-6 bg-white/10 text-center">
+            <dt class="text-sm font-bold text-white/90">{stat.title}</dt>
+            <dd class="text-xs text-white/70 mt-1">{stat.subtitle}</dd>
+            <dd class="text-2xl font-semibold mt-2 bg-gradient-to-r from-amber-400 via-yellow-300 to-amber-400 text-transparent bg-clip-text">
+              {stat.value}
+            </dd>
+          </div>
+        ))
+      }
+    </dl>
+  </div>
+</div>
