@@ -1,35 +1,45 @@
 ---
+import FlameIcon from '@/assets/icons/Flame.astro';
+import RateIcon from '@/assets/icons/Rate.astro';
+import BookIcon from '@/assets/icons/Book.astro';
+import CardIcon from '@/assets/icons/Card.astro';
+
 interface StatItem {
-  title: string;
+  icon: any;
   subtitle: string;
   value: string;
-  gradient: string; // Añadimos esta propiedad para los diferentes gradientes
+  gradient: string;
+  iconColor: string;
 }
 
 const stats: StatItem[] = [
   {
-    title: 'Study Streak',
+    icon: FlameIcon,
     subtitle: 'Days in a row',
     value: '7 days',
-    gradient: 'from-red-400 via-red-300 to-red-400'
+    gradient: 'from-red-400 via-red-300 to-red-400',
+    iconColor: 'text-red-400'
   },
   {
-    title: 'Retention Rate',
+    icon: RateIcon,
     subtitle: 'Words you remember',
     value: '85%',
-    gradient: 'from-blue-400 via-blue-300 to-blue-400'
+    gradient: 'from-blue-400 via-blue-300 to-blue-400',
+    iconColor: 'text-blue-400'
   },
   {
-    title: 'Mastered Words',
+    icon: BookIcon,
     subtitle: 'Total words learned',
     value: '156 words',
-    gradient: 'from-green-400 via-green-300 to-green-400'
+    gradient: 'from-green-400 via-green-300 to-green-400',
+    iconColor: 'text-green-400'
   },
   {
-    title: 'Due Today',
+    icon: CardIcon,
     subtitle: 'Words to review',
     value: '25 cards',
-    gradient: 'from-purple-400 via-purple-300 to-purple-400'
+    gradient: 'from-purple-400 via-purple-300 to-purple-400',
+    iconColor: 'text-purple-400'
   }
 ];
 ---
@@ -38,15 +48,20 @@ const stats: StatItem[] = [
   <div class="mx-auto backdrop-blur-sm rounded-xl border border-white/20 shadow-2xl">
     <dl class="grid grid-cols-1 divide-y divide-white/20 sm:grid-cols-4 sm:divide-y-0 sm:divide-x">
       {
-        stats.map(stat => (
-          <div class="flex flex-col items-center justify-center px-6 py-6 bg-white/10 text-center">
-            <dt class="text-sm font-bold text-white/90">{stat.title}</dt>
-            <dd class="text-xs text-white/70 mt-1">{stat.subtitle}</dd>
-            <dd class={`text-2xl font-semibold mt-2 bg-gradient-to-r ${stat.gradient} text-transparent bg-clip-text`}>
-              {stat.value}
-            </dd>
-          </div>
-        ))
+        stats.map(stat => {
+          const Icon = stat.icon;
+          return (
+            <div class="flex flex-col items-center justify-center px-6 py-6 bg-white/10 text-center">
+              <dt class="text-sm font-bold text-white/90">
+                <Icon class={stat.iconColor} />
+              </dt>
+              <dd class="text-xs text-white/70 mt-2">{stat.subtitle}</dd>
+              <dd class={`text-2xl font-semibold mt-2 bg-gradient-to-r ${stat.gradient} text-transparent bg-clip-text`}>
+                {stat.value}
+              </dd>
+            </div>
+          );
+        })
       }
     </dl>
   </div>
