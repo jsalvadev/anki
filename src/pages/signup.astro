@@ -1,0 +1,96 @@
+---
+import LayoutAlt from '@/layouts/LayoutAlt.astro';
+---
+
+<LayoutAlt
+  title="register title"
+  description="register description"
+>
+  <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
+    <div class="sm:mx-auto sm:w-full sm:max-w-sm">
+      <img
+        class="mx-auto h-16 w-auto"
+        src="/idioma.png"
+        alt="Your Company"
+      />
+      <div class="mt-10 text-center">
+        <h2 class="text-2xl/9 font-bold tracking-tight text-white">Create your account</h2>
+        <p class="mt-2 text-gray-400">Start learning in seconds</p>
+      </div>
+    </div>
+
+    <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+      <form
+        class="space-y-6"
+        action="#"
+        method="POST"
+      >
+        <div>
+          <label
+            for="email"
+            class="block text-sm/6 font-medium text-gray-200"
+          >
+            Email address
+          </label>
+          <div class="mt-2">
+            <input
+              type="email"
+              name="email"
+              id="email"
+              autocomplete="email"
+              required
+              class="block w-full rounded-md bg-gray-900 px-3 py-1.5 text-base text-white outline outline-1 -outline-offset-1 outline-gray-700 placeholder:text-gray-500 focus:outline focus:outline-1 focus:-outline-offset-1 focus:outline-amber-500"
+            />
+          </div>
+        </div>
+
+        <div>
+          <label
+            for="password"
+            class="block text-sm/6 font-medium text-gray-200"
+          >
+            Password
+          </label>
+          <div class="mt-2">
+            <input
+              type="password"
+              name="password"
+              id="password"
+              required
+              class="block w-full rounded-md bg-gray-900 px-3 py-1.5 text-base text-white outline outline-1 -outline-offset-1 outline-gray-700 placeholder:text-gray-500 focus:outline focus:outline-1 focus:-outline-offset-1 focus:outline-amber-500"
+            />
+          </div>
+        </div>
+
+        <div>
+          <button
+            type="submit"
+            class="flex w-full justify-center rounded-md bg-amber-400 px-3 py-1.5 text-sm/6 font-semibold text-black shadow-sm hover:bg-amber-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-400"
+          >
+            Create Account
+          </button>
+        </div>
+      </form>
+
+      <div class="mt-10 text-center">
+        <div class="relative">
+          <div class="absolute inset-0 flex items-center">
+            <div class="w-full border-t border-gray-700"></div>
+          </div>
+          <div class="relative flex justify-center text-sm">
+            <span class="bg-black px-2 text-gray-400">Already have an account?</span>
+          </div>
+        </div>
+
+        <div class="mt-6">
+          <a
+            href="/login"
+            class="text-amber-300 hover:text-amber-200 font-semibold"
+          >
+            Sign in here
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</LayoutAlt>
