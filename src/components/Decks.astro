@@ -1,0 +1,58 @@
+---
+import SectionContainer from './SectionContainer.astro';
+import SectionTitle from './SectionTitle.astro';
+
+interface Deck {
+  id: string;
+  color: string;
+  title: string;
+  words: number;
+}
+
+const decks: Deck[] = [
+  {
+    id: '1',
+    color: 'bg-amber-500',
+    title: 'Common Words',
+    words: 1000
+  },
+  {
+    id: '2',
+    color: 'bg-amber-600',
+    title: 'Irregular Verbs',
+    words: 12
+  },
+  {
+    id: '3',
+    color: 'bg-amber-700',
+    title: 'Phrasal Verbs',
+    words: 8
+  }
+];
+---
+
+<SectionContainer>
+  <SectionTitle title="Choose Your Deck" />
+  <div class="container mx-auto mt-6">
+    <ul class="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+      {
+        decks.map((deck: Deck) => (
+          <li>
+            <a
+              href={`/study/${deck.id}`}
+              class="flex items-center p-3 rounded-lg border border-gray-700 hover:border-amber-500 bg-gray-800/50 hover:bg-gray-700/50 transition-all group"
+            >
+              <div class={`w-10 h-10 ${deck.color} rounded-md flex items-center justify-center text-white font-medium`}>
+                {deck.id}
+              </div>
+              <div class="ml-3 flex-1">
+                <h3 class="text-sm font-medium text-gray-100">{deck.title}</h3>
+                <p class="text-xs text-gray-400">{deck.words} cards</p>
+              </div>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</SectionContainer>
