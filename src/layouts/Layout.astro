@@ -1,6 +1,4 @@
 ---
-import Header from '@/components/Header.astro';
-import Footer from '@/components/Footer.astro';
 import MainContainer from '@/components/MainContainer.astro';
 import '@fontsource-variable/inter';
 
@@ -82,11 +80,9 @@ const { title, description } = Astro.props;
     </div>
     <div class="absolute inset-0 bg-[radial-gradient(circle_500px_at_50%_200px,#00000000,#000)]"></div>
     <MainContainer>
-      <Header />
       <main>
         <slot />
       </main>
-      <Footer />
     </MainContainer>
   </body>
 </html>
