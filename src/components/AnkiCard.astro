@@ -1,0 +1,99 @@
+---
+import FrontCard from './FrontCard.astro';
+import BackCard from './BackCard.astro';
+import SectionContainer from './SectionContainer.astro';
+import SectionTitle from './SectionTitle.astro';
+
+interface Props {
+  frontImage?: string;
+  frontDescription?: string;
+  frontSentence?: string;
+  backWord?: string;
+  backSentence?: string;
+  backTranslation?: string;
+  wordAudioUrl?: string;
+  sentenceAudioUrl?: string;
+}
+
+const props = Astro.props;
+---
+
+<SectionContainer>
+  <SectionTitle title="Let's Rock These Flash Cards" />
+  <div class="grid grid-cols-6 gap-4">
+    <div class="col-span-4">
+      <div class="card-container w-full h-[200px]">
+        <div class="card">
+          <div class="card-front">
+            <FrontCard {...props} />
+          </div>
+          <div class="card-back">
+            <BackCard {...props} />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</SectionContainer>
+
+<style>
+  .card-container {
+    perspective: 1000px;
+    margin: 2rem auto;
+  }
+
+  .card {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-style: preserve-3d;
+  }
+
+  .card-container:hover .card {
+    transform: rotateY(-180deg);
+  }
+
+  .card-front,
+  .card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+    transition: box-shadow 0.3s ease;
+  }
+
+  .card-front {
+    transform: rotateY(0deg);
+  }
+
+  .card-back {
+    transform: rotateY(180deg);
+  }
+
+  .card-container:hover .card-front,
+  .card-container:hover .card-back {
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+  }
+</style>
+
+<script>
+  function setupAudioButtons() {
+    document.querySelectorAll('button').forEach(button => {
+      const audio = button.querySelector('audio');
+      if (audio) {
+        button.addEventListener('click', e => {
+          e.preventDefault();
+          audio.play();
+        });
+      }
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    setupAudioButtons();
+  });
+</script>
