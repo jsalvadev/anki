@@ -3,6 +3,7 @@ import FrontCard from './FrontCard.astro';
 import BackCard from './BackCard.astro';
 import SectionContainer from './SectionContainer.astro';
 import SectionTitle from './SectionTitle.astro';
+import ProgressTracker from './ProgressTracker.astro';
 
 interface Props {
   frontImage?: string;
@@ -20,9 +21,9 @@ const props = Astro.props;
 
 <SectionContainer>
   <SectionTitle title="Let's Rock These Flash Cards" />
-  <div class="grid grid-cols-6 gap-4">
+  <div class="grid grid-cols-6 gap-4 mt-6">
     <div class="col-span-4">
-      <div class="card-container w-full h-[200px]">
+      <div class="card-container w-full h-[220px]">
         <div class="card">
           <div class="card-front">
             <FrontCard {...props} />
@@ -33,13 +34,20 @@ const props = Astro.props;
         </div>
       </div>
     </div>
+    <div class="col-span-2">
+      <ProgressTracker
+        totalCards={25}
+        currentCard={0}
+        correctAnswers={0}
+        incorrectAnswers={0}
+      />
+    </div>
   </div>
 </SectionContainer>
 
 <style>
   .card-container {
     perspective: 1000px;
-    margin: 2rem auto;
   }
 
   .card {

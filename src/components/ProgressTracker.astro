@@ -1,0 +1,68 @@
+---
+interface Props {
+  totalCards: number;
+  currentCard: number;
+  correctAnswers: number;
+  incorrectAnswers: number;
+  totalWordsInDeck?: number;
+  uniqueWordsSeen?: number;
+}
+
+const {
+  totalCards = 25,
+  currentCard = 0,
+  correctAnswers = 0,
+  incorrectAnswers = 0,
+  totalWordsInDeck = 1000,
+  uniqueWordsSeen = 0
+} = Astro.props;
+
+const progress = (currentCard / totalCards) * 100;
+const wordProgress = (uniqueWordsSeen / totalWordsInDeck) * 100;
+---
+
+<div
+  class="w-full bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl overflow-hidden border border-gray-700/50 backdrop-blur-sm shadow-2xl shadow-white/10 p-5"
+>
+  <div class="space-y-4">
+    <div class="progress-section">
+      <div class="flex justify-between text-sm text-gray-400 mb-1.5">
+        <span>Session Progress</span>
+        <span>{currentCard}/{totalCards}</span>
+      </div>
+      <div class="w-full bg-gray-700/50 rounded-full h-2">
+        <div
+          class="bg-blue-500/80 h-2 rounded-full transition-all duration-300"
+          style={`width: ${progress}%`}
+        >
+        </div>
+      </div>
+    </div>
+
+    <div class="progress-section">
+      <div class="flex justify-between text-sm text-gray-400 mb-1.5">
+        <span>Vocabulary Coverage</span>
+        <span>{uniqueWordsSeen}/{totalWordsInDeck}</span>
+      </div>
+      <div class="w-full bg-gray-700/50 rounded-full h-2">
+        <div
+          class="bg-purple-500/80 h-2 rounded-full transition-all duration-300"
+          style={`width: ${wordProgress}%`}
+        >
+        </div>
+      </div>
+    </div>
+
+    <div class="stats grid grid-cols-2 gap-3">
+      <div class="stat-card bg-gray-800/50 p-3 rounded-xl border border-gray-700/30 backdrop-blur-sm">
+        <div class="text-green-400/90 text-xl font-medium">{correctAnswers}</div>
+        <div class="text-sm text-gray-400">Correct</div>
+      </div>
+
+      <div class="stat-card bg-gray-800/50 p-3 rounded-xl border border-gray-700/30 backdrop-blur-sm">
+        <div class="text-red-400/90 text-xl font-medium">{incorrectAnswers}</div>
+        <div class="text-sm text-gray-400">Incorrect</div>
+      </div>
+    </div>
+  </div>
+</div>
